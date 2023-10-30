@@ -1,0 +1,31 @@
+1. Convert a nested if – else if consisting of multiple expressions into a single if-else by
+concatenating the expressions. You need to handle ‘and’, ‘or’, ‘not’ operators in the
+expression.
+Input 1:
+if x == y
+print x;
+else
+if x < y
+print x;
+else
+print y;
+
+Output 1 :
+if (x ==y || x < y ) print x
+else
+print y
+
+Input 2:
+if ( x ! = y)
+{ x=0
+if ( x > y)
+{ x = 0 }
+else { x= 1 }
+}
+else
+{ x = 1}
+
+Output 2:
+if ( x!=y && x > y ) x = 0
+else
+x = 1

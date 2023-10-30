@@ -1,0 +1,101 @@
+lex
+
+%option noyywrap
+%{
+        #include<stdio.h>
+        #include "y.tab.h"
+%}
+%%
+[ \t\n] ;
+for     return FOR;
+[a-zA-Z][_a-zA-Z0-9]* return ID;
+[0-9]+  return NUMBER;
+"!"     return NOT;
+"&&"    return AND;
+"||"    return OR;
+">"     return GT;
+"<"     return LT;
+"=="    return E;
+"!="    return NE;
+">="    return GE;
+"<="    return LE;
+"+"     return ADD;
+"-"     return SUB;
+"="     return EQ;
+"*"     return MUL;
+"/"     return DIV;
+";"     return SC;
+"{"     return OB;
+"}"     return CB;
+"("     return OP;
+")"     return CP;
+"++"    return INCR;
+"--"    return DECR;
+%%
+
+yacc
+
+%{
+#include<stdio.h>
+%}
+
+%token ID NUMBER FOR GT LT GE LE E NE OP CP OB CB SC AND OR NOT INCR DECR ADD SUB MUL DIV EQ
+
+%%
+
+crt:for  { printf("Valid "); }
+for:    FOR OP init SC conditions SC increment CP body ;
+body:   OB stmts CB |
+        for|
+        stmt SC ;
+stmts:  stmt SC stmts |
+        stmt SC |
+        for ;
+init:   stmt |
+        ;
+conditions:     condition AND conditions |
+                condition OR conditions |
+                condition ;
+condition:      factor relop factor |
+                NOT factor relop factor ;
+increment:      stmt |
+                ID INCR |
+                ID DECR |
+                ;
+stmt:   ID EQ expr ;
+expr:   expr ADD term |
+        expr SUB term |
+        term ;
+term:   term MUL factor |
+        term DIV factor |
+        factor;
+factor: ID |
+        NUMBER ;
+relop: GT | LT | GE | LE | E | NE;
+%%
+
+
+void yyerror(const char *str) {
+        printf("Error ");
+}
+int main() {
+        yyparse();
+        return 0;
+}
+
+run comms
+flex .l
+bison -dy .y
+gcc lex.yy.c y.tab.c
+./a.out
+
+for(i=0;i<10;i++){
+for(j=0;j<5;j++){
+x=y;
+}
+}
+for(i=0;i<10;i++){
+for(j=0;j<5;j++){
+x=y;
+}
+}

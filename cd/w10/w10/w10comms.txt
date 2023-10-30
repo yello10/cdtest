@@ -1,0 +1,37 @@
+cat postfix.txt
+cat prefix.txt
+
+flex 1.l
+bison -dy 1.y 
+gcc lex.yy.c y.tab.c
+./a.out
+
+flex 2a.l
+bison -dy 2a.y 
+gcc lex.yy.c y.tab.c
+./a.out
+
+flex 3.l
+bison -dy 3.y 
+gcc lex.yy.c y.tab.c
+./a.out
+
+for(i=0;i<10;i++){
+for(j=0;j<5;j++){
+x=y;
+}
+}
+
+cat switch.txt
+cat s.txt
+
+flex s1.l
+bison -dy s1.y 
+gcc lex.yy.c y.tab.c
+./a.out
+
+flex s2.l
+bison -dy s2.y 
+gcc lex.yy.c y.tab.c
+./a.out
+

@@ -1,0 +1,27 @@
+1. Convert if-else-if statement to switch statement.
+Input:
+if(expression)
+{
+statement;
+}
+else if(expression)
+{
+statement;
+}
+else
+{
+statement;
+}
+2. Convert do - while statement to while statement.
+Input:
+int j = 0;
+do
+{
+j++;
+}while(j<=10);
+3. Convert the arithmetic expression to Boolean expression.
+Input Output
+a + b a || b
+c * d c && d
+a + b * e a || b && e
+(a * c) + d (a && c) || d
